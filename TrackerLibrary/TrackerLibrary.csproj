@@ -41,7 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Matchup.cs" />
+    <Compile Include="MatchupEntry.cs" />
     <Compile Include="PersonModel.cs" />
+    <Compile Include="PrizeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TeamModel.cs" />
     <Compile Include="TournamentModel.cs" />
