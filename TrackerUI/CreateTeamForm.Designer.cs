@@ -42,7 +42,7 @@
             this.lastNameLabel = new System.Windows.Forms.Label();
             this.emailValue = new System.Windows.Forms.TextBox();
             this.emailLabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.cellphoneValue = new System.Windows.Forms.TextBox();
             this.cellPhoneLabel = new System.Windows.Forms.Label();
             this.createMemberButton = new System.Windows.Forms.Button();
             this.deletedSelectedMemberButton = new System.Windows.Forms.Button();
@@ -117,7 +117,7 @@
             // 
             // addNewMemberGroupBox
             // 
-            this.addNewMemberGroupBox.Controls.Add(this.textBox1);
+            this.addNewMemberGroupBox.Controls.Add(this.cellphoneValue);
             this.addNewMemberGroupBox.Controls.Add(this.cellPhoneLabel);
             this.addNewMemberGroupBox.Controls.Add(this.emailValue);
             this.addNewMemberGroupBox.Controls.Add(this.emailLabel);
@@ -188,12 +188,12 @@
             this.emailLabel.TabIndex = 15;
             this.emailLabel.Text = "Email";
             // 
-            // textBox1
+            // cellphoneValue
             // 
-            this.textBox1.Location = new System.Drawing.Point(188, 259);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(279, 51);
-            this.textBox1.TabIndex = 18;
+            this.cellphoneValue.Location = new System.Drawing.Point(188, 259);
+            this.cellphoneValue.Name = "cellphoneValue";
+            this.cellphoneValue.Size = new System.Drawing.Size(279, 51);
+            this.cellphoneValue.TabIndex = 18;
             // 
             // cellPhoneLabel
             // 
@@ -302,7 +302,7 @@
         private System.Windows.Forms.ComboBox selectMemberDropDown;
         private System.Windows.Forms.Label selectTeamMemberLabel;
         private System.Windows.Forms.GroupBox addNewMemberGroupBox;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox cellphoneValue;
         private System.Windows.Forms.Label cellPhoneLabel;
         private System.Windows.Forms.TextBox emailValue;
         private System.Windows.Forms.Label emailLabel;

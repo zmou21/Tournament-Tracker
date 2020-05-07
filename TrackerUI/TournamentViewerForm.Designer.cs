@@ -30,7 +30,7 @@
         {
             this.headerLabel = new System.Windows.Forms.Label();
             this.TournamentName = new System.Windows.Forms.Label();
-            this.round = new System.Windows.Forms.Label();
+            this.roundLabel = new System.Windows.Forms.Label();
             this.roundDropDown = new System.Windows.Forms.ComboBox();
             this.unplayedOnlyCheckBox = new System.Windows.Forms.CheckBox();
             this.matchupListBox = new System.Windows.Forms.ListBox();
@@ -67,17 +67,17 @@
             this.TournamentName.TabIndex = 1;
             this.TournamentName.Text = "<none>";
             // 
-            // round
+            // roundLabel
             // 
-            this.round.AutoSize = true;
-            this.round.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.round.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
-            this.round.Location = new System.Drawing.Point(15, 148);
-            this.round.Name = "round";
-            this.round.Size = new System.Drawing.Size(118, 46);
-            this.round.TabIndex = 2;
-            this.round.Text = "Round";
-            this.round.Click += new System.EventHandler(this.label1_Click);
+            this.roundLabel.AutoSize = true;
+            this.roundLabel.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.roundLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
+            this.roundLabel.Location = new System.Drawing.Point(15, 148);
+            this.roundLabel.Name = "roundLabel";
+            this.roundLabel.Size = new System.Drawing.Size(116, 45);
+            this.roundLabel.TabIndex = 2;
+            this.roundLabel.Text = "Round";
+            this.roundLabel.Click += new System.EventHandler(this.label1_Click);
             // 
             // roundDropDown
             // 
@@ -95,7 +95,7 @@
             this.unplayedOnlyCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
             this.unplayedOnlyCheckBox.Location = new System.Drawing.Point(139, 199);
             this.unplayedOnlyCheckBox.Name = "unplayedOnlyCheckBox";
-            this.unplayedOnlyCheckBox.Size = new System.Drawing.Size(256, 50);
+            this.unplayedOnlyCheckBox.Size = new System.Drawing.Size(252, 49);
             this.unplayedOnlyCheckBox.TabIndex = 4;
             this.unplayedOnlyCheckBox.Text = "UnPlayed Only";
             this.unplayedOnlyCheckBox.UseVisualStyleBackColor = true;
@@ -117,7 +117,7 @@
             this.teamOneName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
             this.teamOneName.Location = new System.Drawing.Point(566, 304);
             this.teamOneName.Name = "teamOneName";
-            this.teamOneName.Size = new System.Drawing.Size(208, 46);
+            this.teamOneName.Size = new System.Drawing.Size(203, 45);
             this.teamOneName.TabIndex = 6;
             this.teamOneName.Text = "<team one>";
             // 
@@ -128,7 +128,7 @@
             this.teamOneScoreLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
             this.teamOneScoreLabel.Location = new System.Drawing.Point(566, 367);
             this.teamOneScoreLabel.Name = "teamOneScoreLabel";
-            this.teamOneScoreLabel.Size = new System.Drawing.Size(104, 46);
+            this.teamOneScoreLabel.Size = new System.Drawing.Size(100, 45);
             this.teamOneScoreLabel.TabIndex = 7;
             this.teamOneScoreLabel.Text = "Score";
             // 
@@ -139,7 +139,7 @@
             this.teamTwoName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
             this.teamTwoName.Location = new System.Drawing.Point(566, 498);
             this.teamTwoName.Name = "teamTwoName";
-            this.teamTwoName.Size = new System.Drawing.Size(208, 46);
+            this.teamTwoName.Size = new System.Drawing.Size(202, 45);
             this.teamTwoName.TabIndex = 8;
             this.teamTwoName.Text = "<team two>";
             // 
@@ -150,7 +150,7 @@
             this.teamTwoScoreLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
             this.teamTwoScoreLabel.Location = new System.Drawing.Point(566, 561);
             this.teamTwoScoreLabel.Name = "teamTwoScoreLabel";
-            this.teamTwoScoreLabel.Size = new System.Drawing.Size(104, 46);
+            this.teamTwoScoreLabel.Size = new System.Drawing.Size(100, 45);
             this.teamTwoScoreLabel.TabIndex = 9;
             this.teamTwoScoreLabel.Text = "Score";
             // 
@@ -175,7 +175,7 @@
             this.versusLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.versusLabel.Location = new System.Drawing.Point(659, 438);
             this.versusLabel.Name = "versusLabel";
-            this.versusLabel.Size = new System.Drawing.Size(87, 46);
+            this.versusLabel.Size = new System.Drawing.Size(85, 45);
             this.versusLabel.TabIndex = 12;
             this.versusLabel.Text = "-VS-";
             // 
@@ -212,7 +212,7 @@
             this.Controls.Add(this.matchupListBox);
             this.Controls.Add(this.unplayedOnlyCheckBox);
             this.Controls.Add(this.roundDropDown);
-            this.Controls.Add(this.round);
+            this.Controls.Add(this.roundLabel);
             this.Controls.Add(this.TournamentName);
             this.Controls.Add(this.headerLabel);
             this.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -228,7 +228,7 @@
 
         private System.Windows.Forms.Label headerLabel;
         private System.Windows.Forms.Label TournamentName;
-        private System.Windows.Forms.Label round;
+        private System.Windows.Forms.Label roundLabel;
         private System.Windows.Forms.ComboBox roundDropDown;
         private System.Windows.Forms.CheckBox unplayedOnlyCheckBox;
         private System.Windows.Forms.ListBox matchupListBox;

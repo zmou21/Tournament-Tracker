@@ -13,4 +13,5 @@ namespace TrackerLibrary
         public decimal PrizeAmount { get; set; }
         public double PrizePercentage { get; set; }
     }
+
 }
