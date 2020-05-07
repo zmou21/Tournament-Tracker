@@ -34,5 +34,7 @@ namespace TrackerLibrary
         /// as the winner
         /// </summary>
         public Matchup ParentMatchup { get; set; }
+
+        //GlobalConfig connect = GlobalConfig.InitializeConnection();
     }
 }
