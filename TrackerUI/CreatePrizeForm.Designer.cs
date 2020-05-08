@@ -94,6 +94,7 @@
             this.placeAmountValue.Name = "placeAmountValue";
             this.placeAmountValue.Size = new System.Drawing.Size(279, 43);
             this.placeAmountValue.TabIndex = 18;
+            this.placeAmountValue.Text = "0";
             // 
             // placeAmountLabel
             // 
@@ -112,6 +113,7 @@
             this.prizePercentValue.Name = "prizePercentValue";
             this.prizePercentValue.Size = new System.Drawing.Size(279, 43);
             this.prizePercentValue.TabIndex = 20;
+            this.prizePercentValue.Text = "0";
             // 
             // prizePercentageLabel
             // 

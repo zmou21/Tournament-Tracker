@@ -22,9 +22,26 @@ namespace TrackerUI
         {
             if(ValidateForm())
             {
-                PrizeModel model = new PrizeModel(placeNameValue.Text, placeNumberValue.Text, placeAmountValue.Text, prizePercentValue.Text);
-                
+                PrizeModel model = new PrizeModel(
+                    placeNameValue.Text, 
+                    placeNumberValue.Text, 
+                    placeAmountValue.Text, 
+                    prizePercentValue.Text);
 
+                foreach (var db in GlobalConfig.Connection)
+                {
+                    db.CreatePrize(model);
+                }
+
+                placeNameValue.Text = "";
+                placeNumberValue.Text = "";
+                placeAmountValue.Text = "0";
+                prizePercentValue.Text = "0";
+
+            }
+            else
+            {
+                MessageBox.Show("This message has invalid information");
             }
         }
 
