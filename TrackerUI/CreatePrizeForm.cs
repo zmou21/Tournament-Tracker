@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TrackerLibrary;
+using TrackerLibrary.Models;
 
 namespace TrackerUI
 {
@@ -23,8 +24,8 @@ namespace TrackerUI
             if(ValidateForm())
             {
                 PrizeModel model = new PrizeModel(
+                    placeNumberValue.Text,
                     placeNameValue.Text, 
-                    placeNumberValue.Text, 
                     placeAmountValue.Text, 
                     prizePercentValue.Text);
 

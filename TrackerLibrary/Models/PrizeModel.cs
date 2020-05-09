@@ -14,11 +14,11 @@ namespace TrackerLibrary.Models
 
         public PrizeModel(string placeNumber, string placeName, string prizeAmount, string prizePercentage)
         {
-            PlaceName = placeName;
-
             int placeNumberValue = 0;
             int.TryParse(placeNumber, out placeNumberValue);
             PlaceNumber = placeNumberValue;
+
+            PlaceName = placeName;
 
             decimal prizeAmountValue = 0;
             decimal.TryParse(prizeAmount, out prizeAmountValue);
