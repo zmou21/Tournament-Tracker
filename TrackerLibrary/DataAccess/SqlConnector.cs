@@ -29,7 +29,7 @@ namespace TrackerLibrary
         /// </summary>
         /// <param name="model">the prize information</param>
         /// <returns>The prize informaiton, including the unique identifier</returns>
-        public PrizeModel CreatePrize(PrizeModel model)
+        public Models.PrizeModel CreatePrize(Models.PrizeModel model)
         {
             model.Id = 1;
 

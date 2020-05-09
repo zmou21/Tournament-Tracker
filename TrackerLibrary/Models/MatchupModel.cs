@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TrackerLibrary
+namespace TrackerLibrary.Models
 {
-    public class Matchup
+    public class MatchupModel
     {
-        public List<MatchupEntry> Entries { get; set; } = new List<MatchupEntry>();
+        public List<MatchupEntryModel> Entries { get; set; } = new List<MatchupEntryModel>();
         public TeamModel Winner { get; }
         public int MatchupRound { get; set; }
 

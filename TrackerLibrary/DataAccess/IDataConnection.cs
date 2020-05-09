@@ -10,6 +10,6 @@ namespace TrackerLibrary
     {
         //SqlConnection SQLDataConnection();
         //string TextFile();
-        PrizeModel CreatePrize(PrizeModel model);
+        Models.PrizeModel CreatePrize(Models.PrizeModel model);
     }
 }

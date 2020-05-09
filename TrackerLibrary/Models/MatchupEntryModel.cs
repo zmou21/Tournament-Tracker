@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TrackerLibrary
+namespace TrackerLibrary.Models
 {
-    public class MatchupEntry
+    public class MatchupEntryModel
     {
         /// <summary>
         /// 
@@ -14,7 +14,7 @@ namespace TrackerLibrary
         /// <param name="score">
         /// 
         /// </param>
-        public MatchupEntry(double score)
+        public MatchupEntryModel(double score)
         {
             Score = score;
         }
@@ -33,7 +33,7 @@ namespace TrackerLibrary
         /// Represents the matchup the team came from 
         /// as the winner
         /// </summary>
-        public Matchup ParentMatchup { get; set; }
+        public MatchupModel ParentMatchup { get; set; }
 
         //GlobalConfig connect = GlobalConfig.InitializeConnection();
     }
