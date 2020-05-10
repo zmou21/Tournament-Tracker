@@ -15,7 +15,7 @@ namespace TrackerLibrary
         public static string CnnString(string connection)
         {
             //pass in name of the connection i.e. TournamentTracker
-            var c = ConfigurationManager.AppSettings[]
+            //var c = ConfigurationManager.AppSettings[];
             return ConfigurationManager.ConnectionStrings[connection].ConnectionString;
         }
 
