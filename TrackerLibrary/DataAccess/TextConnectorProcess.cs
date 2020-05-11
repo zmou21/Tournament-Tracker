@@ -11,6 +11,11 @@ namespace TrackerLibrary.DataAccess.TextHelpers
 {
     public static class TextConnectorProcess
     {
+        //public interface ISaveToText
+        //{
+        //    List<T> ConvertToModel<T>(List<string> data);
+        //}
+
         public static string FullFilePath(this string fileName)
         {
             return $"{ConfigurationManager.AppSettings["filePath"]}\\{fileName}";
@@ -27,6 +32,11 @@ namespace TrackerLibrary.DataAccess.TextHelpers
             return File.ReadAllLines(file).ToList();
         }
 
+        /// <summary>
+        /// Converts the prize model data from the flat file to be used
+        /// </summary>
+        /// <param name="prizeData"></param>
+        /// <returns></returns>
         public static List<PrizeModel> ConverttoPrizeModel(this List<string> prizeData)
         {
             List<PrizeModel> output = new List<PrizeModel>();
@@ -50,7 +60,6 @@ namespace TrackerLibrary.DataAccess.TextHelpers
             return output;
         }
 
-
         //convert the prizes to list<string> and save list<string> to txt file
         public static void SaveToPrizeFile(this List<PrizeModel> models, string fileName)
         {
@@ -63,6 +72,28 @@ namespace TrackerLibrary.DataAccess.TextHelpers
 
             File.WriteAllLines(fileName.FullFilePath(), lines);
         }
+
+
+        public static List<PersonModel> ConverttoPersonModel(this List<string> personModel)
+        {
+            List<PersonModel> people = new List<PersonModel>();
+
+            foreach (PersonModel p in personModel)
+            {
+
+            }
+        }
+
+        //public static void SaveToFile<T>(this List<T> models, string fileName, string data)
+        //{
+        //    List<string> lines = new List<string>();
+
+        //    foreach (var p in models)
+        //    {
+        //        lines.Add(data);
+        //    }
+        //    File.WriteAllLines(fileName.FullFilePath(), lines);
+        //}
     }
 
 }

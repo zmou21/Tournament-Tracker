@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TrackerLibrary.Models;
 
 namespace TrackerLibrary.DataAccess
 {
@@ -10,6 +11,7 @@ namespace TrackerLibrary.DataAccess
     {
         //SqlConnection SQLDataConnection();
         //string TextFile();
-        Models.PrizeModel CreatePrize(Models.PrizeModel model);
+        PrizeModel CreatePrize(PrizeModel model);
+        PersonModel CreatePerson(PersonModel p);
     }
 }
