@@ -14,17 +14,17 @@ namespace TrackerUI
 {
     public partial class CreateTeamForm : Form
     {
-        private List<PersonModel> availableTeamMembers = new List<PersonModel>();
+        private List<PersonModel> availableTeamMembers = GlobalConfig.Connection.GetPerson_All();
         private List<PersonModel> selectedTeamMembers = new List<PersonModel>(); 
 
         public CreateTeamForm()
         {
             InitializeComponent();
             //CreateSampleData();
-            AddTeamMembers();
+            WireUpLists();
         }
 
-        public void CreateSampleData()
+        private void CreateSampleData()
         {
             availableTeamMembers.Add(new PersonModel() { FirstName = "Zack", LastName= "Moum"});
             availableTeamMembers.Add(new PersonModel() { FirstName = "Brooke", LastName = "Ram" });
@@ -34,11 +34,16 @@ namespace TrackerUI
 
         }
 
-        private void AddTeamMembers()
+        private void WireUpLists()
         {
             //this is how to pull member dropdown from form
+            //the null allows for a successful refresh when add and delete members are selected
+            selectMemberDropDown.DataSource = null;
+
             selectMemberDropDown.DataSource = availableTeamMembers;
             selectMemberDropDown.DisplayMember = "FullName";
+
+            teamMembersListBox.DataSource = null;
 
             teamMembersListBox.DataSource = selectedTeamMembers;
             teamMembersListBox.DisplayMember = "FullName";
@@ -58,6 +63,10 @@ namespace TrackerUI
 
                 GlobalConfig.Connection.CreatePerson(p);
 
+                selectedTeamMembers.Add(p);
+
+                WireUpLists();
+
                 firstNameValue.Text = "";
                 lastNameValue.Text = "";
                 emailValue.Text = "";
@@ -71,16 +80,47 @@ namespace TrackerUI
 
         private void addMemberButton_Click(object sender, EventArgs e)
         {
-            //if (ValidateForm())
-            //{
-            //    TeamModel team = new TeamModel();
+            //on click of button
+            //take selected drop down item
+            //add selected item to list<selectedTeamMembers>
+            //remove from drop down
+            var selectedItem = (PersonModel)selectMemberDropDown.SelectedItem;
 
-            //    team.TeamName = teamNameValue.Text;
+            if(selectedItem != null)
+            {
+                selectedTeamMembers.Add(selectedItem);
+                availableTeamMembers.Remove(selectedItem);
 
-            //    GlobalConfig.Connection.CreatePerson(p);
+                //refresh
+                WireUpLists();
+            }
+        }
 
-            //    teamNameValue.Text = "";
-            //}
+        private void RemoveSelectedMemberButton_Click(object sender, EventArgs e)
+        {
+            var selectedItem = (PersonModel)teamMembersListBox.SelectedItem;
+
+            if(selectedItem != null)
+            {
+                selectedTeamMembers.Remove(selectedItem);
+                availableTeamMembers.Add(selectedItem);
+
+                //refresh
+                WireUpLists();
+            }
+        }
+
+
+        private void createTeamButton_Click(object sender, EventArgs e)
+        {
+
+            TeamModel tm = new TeamModel();
+
+            //will take in team name
+            tm.TeamName = teamNameValue.Text;
+            //will take in list of selected team
+            tm.TeamMembers = selectedTeamMembers;
+            //will add list of selected team to DB
         }
 
         private bool ValidateForm()
@@ -105,6 +145,5 @@ namespace TrackerUI
             }
             return output;
         }
-
     }
 }
