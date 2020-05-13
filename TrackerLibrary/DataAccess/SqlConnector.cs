@@ -12,8 +12,8 @@ namespace TrackerLibrary.DataAccess
 {
     public class SqlConnector : IDataConnection
     {
-        //TODO - Make the create prize method save to the database
-       
+
+        private const string db = "TournamentTracker"; 
     
         /// <summary>
         /// Saves a new prize to the database
@@ -23,7 +23,7 @@ namespace TrackerLibrary.DataAccess
         public PrizeModel CreatePrize(PrizeModel model)
         {
             //IDbConnection interface is extensible to text file connection, mysql, etc.
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("TournamentTracker")))
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
             {
                 var p = new DynamicParameters();
                 p.Add("@placeNumber", model.PlaceNumber);
@@ -48,7 +48,7 @@ namespace TrackerLibrary.DataAccess
         /// <returns>The person created and a unique identifier</returns>
         public PersonModel CreatePerson(PersonModel model)
         {
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("TournamentTracker")))
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
             {
                 var p = new DynamicParameters();
                 p.Add("@FirstName", model.FirstName);
@@ -62,6 +62,16 @@ namespace TrackerLibrary.DataAccess
                 model.Id = p.Get<int>("@Id");
                 return model;
             }
+        }
+        //This is the method/process to get data from a DB and send it into a list
+        public List<PersonModel> GetPerson_All()
+        {
+            List<PersonModel> getPersons;
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
+            {
+                getPersons = connection.Query<PersonModel>("dbo.spGetPeople").ToList();
+            }
+            return getPersons;
         }
     }
 }

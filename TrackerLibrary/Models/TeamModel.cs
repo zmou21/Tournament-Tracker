@@ -8,6 +8,10 @@ namespace TrackerLibrary.Models
 {
     public class TeamModel
     {
+        public TeamModel()
+        {
+        }
+
         public TeamModel(List<PersonModel> teamMembers, string teamName)
         {
             TeamMembers = teamMembers;

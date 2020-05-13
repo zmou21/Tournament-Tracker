@@ -78,10 +78,34 @@ namespace TrackerLibrary.DataAccess.TextHelpers
         {
             List<PersonModel> people = new List<PersonModel>();
 
-            foreach (PersonModel p in personModel)
+            foreach (var lines in personModel)
             {
+                //split the CSV file and push values into a new array 
+                string[] cols = lines.Split(',');
 
+                PersonModel p = new PersonModel();
+                p.Id = int.Parse(cols[0]);
+                p.FirstName = cols[1];
+                p.LastName = cols[2];
+                p.EmailAddress = cols[3];
+                p.PhoneNumber = cols[4];
+
+                people.Add(p);
             }
+            return people;
+        }
+
+        //convert the prizes to list<string> and save list<string> to txt file
+        public static void SaveToPersonFile(this List<PersonModel> models, string fileName)
+        {
+            List<string> lines = new List<string>();
+
+            foreach (PersonModel p in models)
+            {
+                lines.Add($"{p.Id},{p.FirstName},{p.LastName},{p.EmailAddress},{p.PhoneNumber}");
+            }
+
+            File.WriteAllLines(fileName.FullFilePath(), lines);
         }
 
         //public static void SaveToFile<T>(this List<T> models, string fileName, string data)

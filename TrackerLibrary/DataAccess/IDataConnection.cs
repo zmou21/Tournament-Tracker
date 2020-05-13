@@ -9,9 +9,9 @@ namespace TrackerLibrary.DataAccess
 {
     public interface IDataConnection
     {
-        //SqlConnection SQLDataConnection();
-        //string TextFile();
         PrizeModel CreatePrize(PrizeModel model);
         PersonModel CreatePerson(PersonModel p);
+        List<PersonModel> GetPerson_All();
+        //TeamModel CreateTeam(TeamModel T);
     }
 }
