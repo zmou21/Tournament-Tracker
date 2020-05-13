@@ -44,9 +44,9 @@ namespace TrackerLibrary.DataAccess
             int currentId = 1;
             if(person.Count > 0)
             {
-                currentId = person.OrderByDescending(x => x.Id).First().Id + 1;
+                currentId = person.OrderByDescending(x => x.PeopleID).First().PeopleID + 1;
             }
-            model.Id = currentId;
+            model.PeopleID = currentId;
 
             person.Add(model);
             person.SaveToPersonFile(PeopleFile);
@@ -54,6 +54,11 @@ namespace TrackerLibrary.DataAccess
         }
 
         public List<PersonModel> GetPerson_All()
+        {
+            return PeopleFile.FullFilePath().LoadFile().ConverttoPersonModel();
+        }
+
+        public TeamModel CreateTeam(TeamModel T)
         {
             throw new NotImplementedException();
         }

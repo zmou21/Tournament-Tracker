@@ -20,7 +20,7 @@ namespace TrackerLibrary.Models
 
         public List<PersonModel> TeamMembers { get; set; } = new List<PersonModel>();
         public string TeamName { get; set; }
-        public int TeamModelID { get; }
+        public int TeamModelID { get; set; }
 
     }
 }

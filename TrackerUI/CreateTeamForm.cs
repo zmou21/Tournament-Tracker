@@ -61,7 +61,7 @@ namespace TrackerUI
                 p.EmailAddress = emailValue.Text;
                 p.PhoneNumber = cellphoneValue.Text;
 
-                GlobalConfig.Connection.CreatePerson(p);
+                p = GlobalConfig.Connection.CreatePerson(p);
 
                 selectedTeamMembers.Add(p);
 
@@ -121,6 +121,13 @@ namespace TrackerUI
             //will take in list of selected team
             tm.TeamMembers = selectedTeamMembers;
             //will add list of selected team to DB
+
+            GlobalConfig.Connection.CreateTeam(tm);
+
+            //TODO - close out form
+            teamNameValue.Text = "";
+            selectedTeamMembers = null;
+
         }
 
         private bool ValidateForm()

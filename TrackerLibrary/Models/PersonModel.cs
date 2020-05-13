@@ -13,7 +13,7 @@ namespace TrackerLibrary.Models
         public string LastName { get; set; }
         public string EmailAddress { get; set; }
         public string PhoneNumber { get; set; }
-        public int Id { get; set; }
+        public int PeopleID { get; set; }
         public string FullName
         {
             get

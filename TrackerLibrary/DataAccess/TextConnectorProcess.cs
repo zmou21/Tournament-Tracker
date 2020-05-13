@@ -84,7 +84,7 @@ namespace TrackerLibrary.DataAccess.TextHelpers
                 string[] cols = lines.Split(',');
 
                 PersonModel p = new PersonModel();
-                p.Id = int.Parse(cols[0]);
+                p.PeopleID = int.Parse(cols[0]);
                 p.FirstName = cols[1];
                 p.LastName = cols[2];
                 p.EmailAddress = cols[3];
@@ -102,7 +102,7 @@ namespace TrackerLibrary.DataAccess.TextHelpers
 
             foreach (PersonModel p in models)
             {
-                lines.Add($"{p.Id},{p.FirstName},{p.LastName},{p.EmailAddress},{p.PhoneNumber}");
+                lines.Add($"{p.PeopleID},{p.FirstName},{p.LastName},{p.EmailAddress},{p.PhoneNumber}");
             }
 
             File.WriteAllLines(fileName.FullFilePath(), lines);

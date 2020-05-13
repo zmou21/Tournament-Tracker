@@ -59,7 +59,7 @@ namespace TrackerLibrary.DataAccess
 
                 connection.Execute("[dbo].[spPeople_Insert]", p, commandType: CommandType.StoredProcedure);
 
-                model.Id = p.Get<int>("@Id");
+                model.PeopleID = p.Get<int>("@Id");
                 return model;
             }
         }
@@ -72,6 +72,32 @@ namespace TrackerLibrary.DataAccess
                 getPersons = connection.Query<PersonModel>("dbo.spGetPeople").ToList();
             }
             return getPersons;
+        }
+
+        public TeamModel CreateTeam(TeamModel T)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@TeamName", T.TeamName);
+                p.Add("@TeamId", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                connection.Execute("[dbo].[spInsert_Teams]", p, commandType: CommandType.StoredProcedure);
+
+                T.TeamModelID = p.Get<int>("@TeamId");
+
+                foreach(var t in T.TeamMembers)
+                {
+                    p = new DynamicParameters();
+                    p.Add("@TeamId", T.TeamModelID);
+                    p.Add("@PeopleID", t.PeopleID);
+
+                    connection.Execute("dbo.spInsert_TeamMembers", p, commandType: CommandType.StoredProcedure);
+
+                }
+
+                return T;
+            }
         }
     }
 }
