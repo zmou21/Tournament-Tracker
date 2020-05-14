@@ -108,6 +108,61 @@ namespace TrackerLibrary.DataAccess.TextHelpers
             File.WriteAllLines(fileName.FullFilePath(), lines);
         }
 
+        public static List<TeamModel> ConvertToTeamModel(this List<string> teamModel, string peopleFileName)
+        {
+            List<TeamModel> team = new List<TeamModel>();
+            List<PersonModel> person = peopleFileName.FullFilePath().LoadFile().ConverttoPersonModel();
+
+            foreach (var lines in teamModel)
+            {
+                //split the CSV file and push values into a new array 
+                string[] cols = lines.Split(',');
+
+                TeamModel t = new TeamModel();
+                t.TeamModelID = int.Parse(cols[0]);
+                t.TeamName = cols[1];
+
+                string[] personIDs = cols[2].Split('|');
+                foreach (string id in personIDs)
+                {
+                    //uses LINQ to filter and parse the ids by comparing the IDs between the two
+                    t.TeamMembers.Add(person.Where(x => x.PeopleID == int.Parse(id)).First());
+                }
+                
+                team.Add(t);
+            }
+            return team;
+        }
+
+        public static void SaveToTeamFile(this List<TeamModel> models, string fileName)
+        {
+
+            List<string> lines = new List<string>();
+            var t = "";
+
+            foreach(var p in models)
+            {
+                t= ConvertPeopleListToString(p.TeamMembers);
+                lines.Add($"{p.TeamModelID}, {p.TeamName}, {t}");
+            }
+            File.WriteAllLines(fileName.FullFilePath(), lines);
+        }
+
+        private static string ConvertPeopleListToString(List<PersonModel> people)
+        {
+            var t = "";
+            if(people.Count > 0)
+            {
+                foreach (var p in people)
+                {
+                    t += $"{p.PeopleID}|";
+                }
+                t = t.Substring(0, t.Length - 1);
+            }
+
+            return t;
+        }
+
         //public static void SaveToFile<T>(this List<T> models, string fileName, string data)
         //{
         //    List<string> lines = new List<string>();
