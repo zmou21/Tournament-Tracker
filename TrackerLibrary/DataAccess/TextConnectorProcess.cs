@@ -138,11 +138,10 @@ namespace TrackerLibrary.DataAccess.TextHelpers
         {
 
             List<string> lines = new List<string>();
-            var t = "";
 
             foreach(var p in models)
             {
-                t= ConvertPeopleListToString(p.TeamMembers);
+                var t= ConvertPeopleListToString(p.TeamMembers);
                 lines.Add($"{p.TeamModelID}, {p.TeamName}, {t}");
             }
             File.WriteAllLines(fileName.FullFilePath(), lines);

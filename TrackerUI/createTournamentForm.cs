@@ -21,5 +21,10 @@ namespace TrackerUI
         {
 
         }
+
+        private void addTeamButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
