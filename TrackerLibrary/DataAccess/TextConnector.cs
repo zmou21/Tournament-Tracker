@@ -74,5 +74,10 @@ namespace TrackerLibrary.DataAccess
             team.SaveToTeamFile(TeamsFile);
             return model;
         }
+
+        public List<TeamModel> GetTeam_All()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -65,6 +65,8 @@
     <Compile Include="createTournamentForm.Designer.cs">
       <DependentUpon>createTournamentForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="IPrizeRequestor.cs" />
+    <Compile Include="ITeamRequestor.cs" />
     <Compile Include="TournamentDashboardForm.cs">
       <SubType>Form</SubType>
     </Compile>

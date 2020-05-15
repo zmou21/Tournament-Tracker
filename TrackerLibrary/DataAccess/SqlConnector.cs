@@ -12,7 +12,6 @@ namespace TrackerLibrary.DataAccess
 {
     public class SqlConnector : IDataConnection
     {
-
         private const string db = "TournamentTracker"; 
     
         /// <summary>
@@ -72,6 +71,24 @@ namespace TrackerLibrary.DataAccess
                 getPersons = connection.Query<PersonModel>("dbo.spGetPeople").ToList();
             }
             return getPersons;
+        }
+
+        public List<TeamModel> GetTeam_All()
+        {
+            List<TeamModel> getTeams;
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
+            {
+                getTeams = connection.Query<TeamModel>("dbo.spGet_Team").ToList();
+
+                foreach (TeamModel t in getTeams)
+                {
+                    var p = new DynamicParameters();
+                    p.Add("@TeamId", t.TeamModelID);
+                    t.TeamMembers = connection.Query<PersonModel>("dbo.spGetByTeam_TeamMembers", p, commandType: CommandType.StoredProcedure).ToList();
+                }
+            }
+
+            return getTeams;
         }
 
         public TeamModel CreateTeam(TeamModel T)
