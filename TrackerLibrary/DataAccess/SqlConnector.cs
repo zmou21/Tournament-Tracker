@@ -116,5 +116,10 @@ namespace TrackerLibrary.DataAccess
                 return T;
             }
         }
+
+        public TournamentModel CreateTournament(TournamentModel model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

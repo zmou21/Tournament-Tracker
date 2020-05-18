@@ -70,6 +70,19 @@ namespace TrackerUI
             }
         }
 
+        private void removePrizesButton_Click(object sender, EventArgs e)
+        {
+            var prize = (PrizeModel)prizesListBox.SelectedItem;
+            if(prize != null)
+            {
+                selectedPrizes.Remove(prize);
+
+                //refresh
+                WireUpLists();
+            }
+        }
+
+        //Creating and requesting the prize data
         private void createPrizeButton_Click(object sender, EventArgs e)
         {
             //call CreatePrizeForm
@@ -86,6 +99,7 @@ namespace TrackerUI
             WireUpLists();
         }
 
+        //Creating and requesting the team data
         private void createNewTeamLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             CreateTeamForm frm = new CreateTeamForm(this);
@@ -96,6 +110,21 @@ namespace TrackerUI
         {
             selectedTeams.Add(model);
             WireUpLists();
+        }
+
+        private void createTournamentButton_Click(object sender, EventArgs e)
+        {
+            TournamentModel tour = new TournamentModel();
+            tour.TournamentName = tournamentNameValue.Text;
+            tour.EntryFee = decimal.Parse(entryFeeValue.Text);
+            tour.Prizes = selectedPrizes;
+            tour.EnteredTeams = selectedTeams;
+
+            GlobalConfig.Connection.CreateTournament(tour);
+
+            tournamentNameValue.Text = "";
+            entryFeeValue.Text = "";
+
         }
     }
 }

@@ -2,7 +2,7 @@
 CREATE TABLE Tournament
 (
 TournamentID int identity(1,1) not null PRIMARY KEY,
-TournamentName nvarchar(50) null,
+TournamentName nvarchar(100) null,
 EntryFee decimal(10,2) null
 );
 
