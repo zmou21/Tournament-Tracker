@@ -131,9 +131,7 @@ namespace TrackerUI
 
             GlobalConfig.Connection.CreateTournament(tour);
 
-
             //Todo - create matchups
-
 
             tournamentNameValue.Text = "";
             entryFeeValue.Text = "";
