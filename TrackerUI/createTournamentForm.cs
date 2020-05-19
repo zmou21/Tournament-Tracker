@@ -114,16 +114,30 @@ namespace TrackerUI
 
         private void createTournamentButton_Click(object sender, EventArgs e)
         {
+            //Validate entry fields
+            decimal entry = 0;
+            bool feeAcceptable = decimal.TryParse(entryFeeValue.Text, out entry);
+
+            if(!feeAcceptable)
+            {
+                MessageBox.Show("Fee is invalid. Try again", "Invalid Fee", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             TournamentModel tour = new TournamentModel();
             tour.TournamentName = tournamentNameValue.Text;
-            tour.EntryFee = decimal.Parse(entryFeeValue.Text);
+            tour.EntryFee = entry;
             tour.Prizes = selectedPrizes;
             tour.EnteredTeams = selectedTeams;
 
             GlobalConfig.Connection.CreateTournament(tour);
 
+
+            //Todo - create matchups
+
+
             tournamentNameValue.Text = "";
             entryFeeValue.Text = "";
+            WireUpLists();
 
         }
     }

@@ -119,7 +119,37 @@ namespace TrackerLibrary.DataAccess
 
         public TournamentModel CreateTournament(TournamentModel model)
         {
-            throw new NotImplementedException();
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
+            {
+                var t = new DynamicParameters();
+                t.Add("@TournamentName", model.TournamentName);
+                t.Add("@EntryFee", model.EntryFee);
+                t.Add("@Active", 1);
+                t.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+                connection.Execute("[dbo].[spInsert_Tournament]", t, commandType: CommandType.StoredProcedure);
+
+                model.Id = t.Get<int>("Id");
+
+                foreach(var prize in model.Prizes)
+                {
+                    t = new DynamicParameters();
+                    t.Add("@TournamentID", model.Id);
+                    t.Add("@PrizeID", prize.Id);
+
+                    connection.Execute("dbo.spInsert_TournamentPrizes", t, commandType: CommandType.StoredProcedure);
+                }
+
+                foreach (var team in model.EnteredTeams)
+                {
+                    t = new DynamicParameters();
+                    t.Add("@TournamentID", model.Id);
+                    t.Add("@TeamID", team.TeamModelID);
+
+                    connection.Execute("dbo.spInsert_TournamentTeams", t, commandType: CommandType.StoredProcedure);
+                }
+
+                return model;
+            }
         }
     }
 }
