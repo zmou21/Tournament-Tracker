@@ -109,6 +109,7 @@ namespace TrackerLibrary.DataAccess.TextHelpers
             List<TeamModel> team = teamFileName.FullFilePath().LoadFile().ConvertToTeamModel(personFileName);
             List<PrizeModel> prize = prizeFileName.FullFilePath().LoadFile().ConverttoPrizeModel();
 
+
             foreach(var lines in tourModel)
             {
                 string[] cols = lines.Split(',');
@@ -183,9 +184,26 @@ namespace TrackerLibrary.DataAccess.TextHelpers
             {
                 var prizeIDs = ConvertPrizeListToString(t.Prizes);
                 var teamIDs = ConvertTeamListToString(t.EnteredTeams);
-                lines.Add($"{t.Id},{t.TournamentName},{t.EntryFee},{prizeIDs},{teamIDs}");
+                var matchupIDs = ConvertRoundListToString(t.Rounds);
+                lines.Add($"{t.Id},{t.TournamentName},{t.EntryFee},{prizeIDs},{teamIDs},{matchupIDs}");
             }
             File.WriteAllLines(fileName.FullFilePath(), lines);
+        }
+//TODO - convert methods refactor into one method using generics 
+
+        private static string ConvertListsToString<T>(List<T> model)
+        {
+            var t = "";
+            if (model.Count > 0)
+            {
+                foreach (var p in model)
+                {
+                    t += $"{p}|";
+                }
+                t = t.Substring(0, t.Length - 1);
+            }
+
+            return t;
         }
 
         private static string ConvertPeopleListToString(List<PersonModel> people)
@@ -228,6 +246,34 @@ namespace TrackerLibrary.DataAccess.TextHelpers
                 t = t.Substring(0, t.Length - 1);
             }
             return t;
+        }
+        //Rounds - id~id~id~id|id~id|id
+        private static string ConvertRoundListToString(List<List<MatchupModel>> rounds)
+        {
+            var t = "";
+            if(rounds.Count > 0)
+            {
+                foreach (var r in rounds)
+                {
+                    t += $"{ConvertMatchupListToString(r)}|";
+                }
+                t = t.Substring(0, t.Length - 1);
+            }
+            return t;
+        }
+
+        private static string ConvertMatchupListToString(List<MatchupModel> matchup)
+        {
+            var list = "";
+            if(matchup.Count > 0)
+            {
+                foreach (MatchupModel m in matchup)
+                {
+                    list += $"{m.Id}~";
+                }
+                list = list.Substring(0, list.Length - 1);
+            }
+            return list;
         }
     }
 

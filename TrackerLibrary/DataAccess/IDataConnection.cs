@@ -12,9 +12,10 @@ namespace TrackerLibrary.DataAccess
         List<PersonModel> GetPerson_All();
         List<TeamModel> GetTeam_All();
         List<TournamentModel> GetTournament_All();
+        //Todo convert all of the create methods to return void
         PrizeModel CreatePrize(PrizeModel model);
         PersonModel CreatePerson(PersonModel p);
         TeamModel CreateTeam(TeamModel T);
-        TournamentModel CreateTournament(TournamentModel model);
+        void CreateTournament(TournamentModel model);
     }
 }

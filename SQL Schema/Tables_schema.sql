@@ -2,15 +2,16 @@
 CREATE TABLE Tournament
 (
 TournamentID int identity(1,1) not null PRIMARY KEY,
-TournamentName nvarchar(100) null,
-EntryFee decimal(10,2) null
+TournamentName nvarchar(100) not null,
+EntryFee decimal(10,2) not null,
+Active bit not null
 );
 
 --Drop table Teams
 CREATE TABLE Teams
 (
 TeamID int identity(1,1) not null PRIMARY KEY,
-TeamName nvarchar(255) null
+TeamName nvarchar(255) not null
 );
 
 
@@ -45,10 +46,10 @@ PrizeID int FOREIGN KEY REFERENCES Prizes(PrizeID),
 CREATE TABLE People
 (
 PeopleID int identity(1,1) not null PRIMARY KEY,
-FirstName nvarchar(50) null,
-LastName nvarchar(50) null,
-EmailAddress nvarchar(255) null,
-CellPhoneNumber nvarchar(50) null
+FirstName nvarchar(50) not null,
+LastName nvarchar(50) not null,
+EmailAddress nvarchar(255) not null,
+CellPhoneNumber nvarchar(50) not null
 );
 
 --Drop table TeamMembers
@@ -71,8 +72,8 @@ MatchupRound int not null
 CREATE TABLE MatchupEntries
 (
 MatchupEntriesID int identity(1,1) not null PRIMARY KEY,
-MatchupID int FOREIGN KEY REFERENCES Matchups(MatchupID),
-ParentMatchupID int FOREIGN KEY REFERENCES Matchups(MatchupID),
-TeamID int FOREIGN KEY REFERENCES Teams(TeamID),
-Score int not null
+MatchupID int FOREIGN KEY REFERENCES Matchups(MatchupID) not null,
+ParentMatchupID int FOREIGN KEY REFERENCES Matchups(MatchupID) null,
+TeamID int FOREIGN KEY REFERENCES Teams(TeamID) null,
+Score int null
 );

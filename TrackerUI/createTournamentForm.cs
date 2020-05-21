@@ -18,15 +18,19 @@ namespace TrackerUI
         private List<TeamModel> selectedTeams = new List<TeamModel>();
         private List<PrizeModel> selectedPrizes = new List<PrizeModel>();
 
-        ITournamentRequestor callingForm;
+        //ITournamentRequestor callingForm;
 
-        public createTournamentForm(ITournamentRequestor caller)
+        //public createTournamentForm(ITournamentRequestor caller)
+        //{
+        //    InitializeComponent();
+        //    WireUpLists();
+        //    callingForm = caller;
+        //}
+        public createTournamentForm()
         {
             InitializeComponent();
             WireUpLists();
-            callingForm = caller;
         }
-
         private void WireUpLists()
         {
             //this is how to pull member dropdown from form
@@ -135,6 +139,13 @@ namespace TrackerUI
             GlobalConfig.Connection.CreateTournament(tour);
 
             //Todo - create matchups
+            //order our list randomly
+            //check if list is big enough - if not, add in byes - 2^n teams
+            //create first round of matchups
+            //create every round after that  (n/2 where n = teams ) to determine number of rounds
+
+
+
 
             tournamentNameValue.Text = "";
             entryFeeValue.Text = "";

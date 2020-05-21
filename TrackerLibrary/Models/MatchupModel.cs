@@ -11,6 +11,7 @@ namespace TrackerLibrary.Models
         public List<MatchupEntryModel> Entries { get; set; } = new List<MatchupEntryModel>();
         public TeamModel Winner { get; }
         public int MatchupRound { get; set; }
+        public int Id { get; set; }
 
     }
 }
