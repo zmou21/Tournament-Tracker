@@ -18,10 +18,13 @@ namespace TrackerUI
         private List<TeamModel> selectedTeams = new List<TeamModel>();
         private List<PrizeModel> selectedPrizes = new List<PrizeModel>();
 
-        public createTournamentForm()
+        ITournamentRequestor callingForm;
+
+        public createTournamentForm(ITournamentRequestor caller)
         {
             InitializeComponent();
             WireUpLists();
+            callingForm = caller;
         }
 
         private void WireUpLists()

@@ -175,11 +175,11 @@ namespace TrackerLibrary.DataAccess.TextHelpers
         }
 
 
-        private static void SaveToTournamentFile(this List<TournamentModel> tour, string fileName)
+        public static void SaveToTournamentFile(this List<TournamentModel> models, string fileName)
         {
             List<string> lines = new List<string>();
 
-            foreach (var t in tour)
+            foreach (var t in models)
             {
                 var prizeIDs = ConvertPrizeListToString(t.Prizes);
                 var teamIDs = ConvertTeamListToString(t.EnteredTeams);
