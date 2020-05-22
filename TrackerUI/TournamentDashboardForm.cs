@@ -39,8 +39,8 @@ namespace TrackerUI
 
         private void createTournamentButton_Click(object sender, EventArgs e)
         {
-            createTournamentForm frm = new createTournamentForm(this);
-            frm.Show();
+            //createTournamentForm frm = new createTournamentForm(this);
+            //frm.Show();
         }
     }
 }

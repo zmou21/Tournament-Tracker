@@ -139,13 +139,7 @@ namespace TrackerUI
             GlobalConfig.Connection.CreateTournament(tour);
 
             //Todo - create matchups
-            //order our list randomly
-            //check if list is big enough - if not, add in byes - 2^n teams
-            //create first round of matchups
-            //create every round after that  (n/2 where n = teams ) to determine number of rounds
-
-
-
+            TournamentLogic.CreateRounds(tour);
 
             tournamentNameValue.Text = "";
             entryFeeValue.Text = "";
